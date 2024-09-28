@@ -7,17 +7,17 @@ public class BacklogItem {
     
     private String nombrePbi;
     private Long idPbi;
-    private int estimulacionInicial;
-    private int estimulacionActual;
+    private int estimacionInicial;
+    private int estimacionActual;
     private int horasFaltantes;
     private LocalDate fechaFin;
 
-    public BacklogItem(String nombrePbi, Long idPbi, int estimulacionInicial, int estimulacionActual, LocalDate fechaFin) {
+    public BacklogItem(String nombrePbi, Long idPbi, int estimacionInicial, int estimacionActual, LocalDate fechaFin) {
         this.nombrePbi = nombrePbi;
         this.idPbi = idPbi;
-        this.estimulacionInicial = estimulacionInicial;
-        this.estimulacionActual = estimulacionActual;
-        this.horasFaltantes = estimulacionInicial - estimulacionActual;
+        this.estimacionInicial = estimacionInicial;
+        this.estimacionActual = estimacionActual;
+        this.horasFaltantes = estimacionInicial - estimacionActual;
         this.fechaFin = fechaFin;
     }
 
@@ -29,12 +29,12 @@ public class BacklogItem {
         return idPbi;
     }
 
-    public int getEstimulacionInicial() {
-        return estimulacionInicial;
+    public int getEstimacionInicial() {
+        return estimacionInicial;
     }
 
-    public int getEstimulacionActual() {
-        return estimulacionActual;
+    public int getEstimacionActual() {
+        return estimacionActual;
     }
 
     public int getHorasFaltantes() {
@@ -53,12 +53,12 @@ public class BacklogItem {
         this.idPbi = idPbi;
     }
 
-    public void setEstimulacionInicial(int estimulacionInicial) {
-        this.estimulacionInicial = estimulacionInicial;
+    public void setEstimulacionInicial(int estimacionInicial) {
+        this.estimacionInicial = estimacionInicial;
     }
 
-    public void setEstimulacionActual(int estimulacionActual) {
-        this.estimulacionActual = estimulacionActual;
+    public void setEstimulacionActual(int estimacionActual) {
+        this.estimacionActual = estimacionActual;
     }
 
     public void setHorasFaltantes(int horasFaltantes) {
