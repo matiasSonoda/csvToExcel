@@ -4,9 +4,15 @@ import com.opencsv.exceptions.CsvValidationException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class CsvToExcel {
@@ -22,35 +28,38 @@ public class CsvToExcel {
     }
     
     public static void readDataLineByLine(String file) {
-        
-        try {
+
+        try(CSVReader reader = new CSVReader(new FileReader(file))) {
             List<Feature> features = new ArrayList<>();
             Map<Long,Feature> featureMap = new HashMap<>();
-
-            //Creo objeto FileReader
-            //Pas ocomo parametro un archivo CSV
-            FileReader filereader = new FileReader(file);
-            
-            //Creo el objeto lector csvReader
-            // el archivo es un parametro
-            CSVReader csvReader = new CSVReader(filereader);
+            DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+                .appendPattern("M/d/yyyy")
+                .optionalStart()
+                .appendPattern(" h:mm:ss a")
+                .optionalEnd()
+                .toFormatter(Locale.ENGLISH);
             String[] line;
-            
-            //Ahora leo linea por linea
-            while ((line  = csvReader.readNext()) != null){
-                WorkItem workItem = new WorkItem(line[0], Long.parseLong(line[1]), line[2],line[3],line[4], LocalDate.parse(line[5]), LocalDate.parse(line[6]), Integer.parseInt(line[7]), line[8]);
+ 
+            while ((line  = reader.readNext()) != null){
+               
+                LocalDateTime startDate = line[5].isEmpty() ? null : LocalDateTime.parse(line[5], formatter);
+                LocalDateTime targetDate = line[6].isEmpty() ? null : LocalDateTime.parse(line[6], formatter);
+                WorkItem workItem = new WorkItem(line[0], Long.parseLong(line[1]), 
+                                                 line[2],line[3],line[4], 
+                                                 startDate, targetDate, 
+                                                 line[7].isEmpty() ? 0 : Integer.parseInt(line[7]), line[8]);
                 
-                if (workItem.getWorkItemType().toLowerCase().equals("feature")){
-                    Feature feature = new Feature(
-                            workItem.getAssignedTo(), "equipo", workItem.getTitle(),
-                            false, workItem.getId()
-                    );
+                if (workItem.getWorkItemType().toLowerCase().equals("feature"))
+                    {
+                    Feature feature = new Feature( workItem.getAssignedTo(), "equipo", workItem.getTitle(),false, workItem.getId());
+                    
                     features.add(feature);
                     featureMap.put(workItem.getId(), feature);
                 }else if(workItem.getAssignedTo().toLowerCase().equals("product backlog item")){
                     
-                    BacklogItem backlogItem = new BacklogItem( workItem.getTitle(),workItem.getId(),
-                    0,0, workItem.getTargetDate());
+                    BacklogItem backlogItem = new BacklogItem( 
+                            workItem.getTitle(),workItem.getId(),
+                            0,0, workItem.getTargetDate().toLocalDate());
                 Feature parentFeature = featureMap.get(workItem.getId());
                 if (parentFeature != null){
                     

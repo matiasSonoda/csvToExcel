@@ -2,6 +2,7 @@
 package com.csvtoexcel.csvtoexcel;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 
@@ -13,12 +14,12 @@ import java.time.LocalDate;
     private String workItemType;
     private String title;
     private String state;
-    private LocalDate startDate;
-    private LocalDate targetDate;
+    private LocalDateTime startDate;
+    private LocalDateTime targetDate;
     private int effort;
     private String tshirtSize;
 
-    public WorkItem(String assignedTo, Long id, String workItemType, String title, String state, LocalDate startDate, LocalDate targetDate, int effort, String tshirtSize) {
+    public WorkItem(String assignedTo, Long id, String workItemType, String title, String state, LocalDateTime startDate, LocalDateTime targetDate, int effort, String tshirtSize) {
         this.assignedTo = assignedTo;
         this.id = id;
         this.workItemType = workItemType;
@@ -50,11 +51,11 @@ import java.time.LocalDate;
         return state;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public LocalDate getTargetDate() {
+    public LocalDateTime getTargetDate() {
         return targetDate;
     }
 
@@ -86,11 +87,11 @@ import java.time.LocalDate;
         this.state = state;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public void setTargetDate(LocalDate targetDate) {
+    public void setTargetDate(LocalDateTime targetDate) {
         this.targetDate = targetDate;
     }
 

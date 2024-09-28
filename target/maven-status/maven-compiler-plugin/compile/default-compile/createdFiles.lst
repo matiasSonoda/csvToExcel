@@ -1,1 +1,4 @@
 com\csvtoexcel\csvtoexcel\CsvToExcel.class
+com\csvtoexcel\csvtoexcel\BacklogItem.class
+com\csvtoexcel\csvtoexcel\Feature.class
+com\csvtoexcel\csvtoexcel\WorkItem.class
