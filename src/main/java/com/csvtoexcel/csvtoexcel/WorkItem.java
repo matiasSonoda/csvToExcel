@@ -1,13 +1,8 @@
-
 package com.csvtoexcel.csvtoexcel;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
-
-
-    
-    
+ 
  public class WorkItem {
     private String assignedTo;
     private Long id;
@@ -15,11 +10,11 @@ import java.time.LocalDateTime;
     private String title;
     private String state;
     private LocalDateTime startDate;
-    private LocalDateTime targetDate;
+    private LocalDate targetDate;
     private int effort;
-    private String tshirtSize;
+    private int tshirtSize;
 
-    public WorkItem(String assignedTo, Long id, String workItemType, String title, String state, LocalDateTime startDate, LocalDateTime targetDate, int effort, String tshirtSize) {
+    public WorkItem(String assignedTo, Long id, String workItemType, String title, String state, LocalDateTime startDate, LocalDate targetDate, int effort, int tshirtSize) {
         this.assignedTo = assignedTo;
         this.id = id;
         this.workItemType = workItemType;
@@ -55,7 +50,7 @@ import java.time.LocalDateTime;
         return startDate;
     }
 
-    public LocalDateTime getTargetDate() {
+    public LocalDate getTargetDate() {
         return targetDate;
     }
 
@@ -63,7 +58,7 @@ import java.time.LocalDateTime;
         return effort;
     }
 
-    public String getTshirtSize() {
+    public int getTshirtSize() {
         return tshirtSize;
     }
 
@@ -91,7 +86,7 @@ import java.time.LocalDateTime;
         this.startDate = startDate;
     }
 
-    public void setTargetDate(LocalDateTime targetDate) {
+    public void setTargetDate(LocalDate targetDate) {
         this.targetDate = targetDate;
     }
 
@@ -99,7 +94,7 @@ import java.time.LocalDateTime;
         this.effort = effort;
     }
 
-    public void setTshirtSize(String tshirtSize) {
+    public void setTshirtSize(int tshirtSize) {
         this.tshirtSize = tshirtSize;
     }
     

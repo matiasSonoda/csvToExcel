@@ -10,11 +10,11 @@ public class Feature {
     private String correo;
     private String equipo;
     private String nombreDesarrollo;
-    private boolean fix;
+    private String  fix;
     private Long idDevOps;
     private List<BacklogItem> backlogItems;
 
-    public Feature(String correo, String equipo, String nombreDesarrollo, boolean fix, Long idDevOps) {
+    public Feature(String correo, String equipo, String nombreDesarrollo, String fix, Long idDevOps) {
         this.correo = correo;
         this.equipo = equipo;
         this.nombreDesarrollo = nombreDesarrollo;
@@ -37,7 +37,7 @@ public class Feature {
         return nombreDesarrollo;
     }
 
-    public boolean isFix() {
+    public String isFix() {
         return fix;
     }
 
@@ -62,7 +62,7 @@ public class Feature {
         this.nombreDesarrollo = nombreDesarrollo;
     }
 
-    public void setFix(boolean fix) {
+    public void setFix(String fix) {
         this.fix = fix;
     }
 
